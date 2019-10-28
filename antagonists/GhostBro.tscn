@@ -264,7 +264,7 @@ tracks/0/keys = {
 [node name="GhostBro" type="Spatial"]
 
 [node name="Graphics" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.104228, 0 )
+transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.2, 0 )
 
 [node name="Ghost" type="MeshInstance" parent="Graphics"]
 transform = Transform( 0.832019, 0, 0.554747, 0, 0.796783, 0, -0.554747, 0, 0.832019, 0, 0.657236, 0 )
