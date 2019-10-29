@@ -1,4 +1,4 @@
 extends Spatial
 
 func interact():
-	print('asd')
+	ConvoManager.display_dialog("eat_chips")

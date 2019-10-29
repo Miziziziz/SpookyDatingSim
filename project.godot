@@ -19,6 +19,11 @@ config/name="SpookyDatingSim"
 run/main_scene="res://MainScene.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+ConvoManager="*res://ConvoManager.tscn"
+StateManager="*res://StateManager.tscn"
+
 [input]
 
 click={

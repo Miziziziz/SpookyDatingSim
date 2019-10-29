@@ -40,7 +40,7 @@ func play_anim(anim_name):
 func _process(delta):
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
-	if Input.is_action_just_pressed("click"):
+	if Input.is_action_just_pressed("click") and !ConvoManager.dialog_being_shown:
 		var thing_under_mouse = get_thing_under_mouse()
 		if thing_under_mouse and thing_under_mouse.has_method("interact"):
 			var goal_pos = thing_under_mouse.global_transform.origin

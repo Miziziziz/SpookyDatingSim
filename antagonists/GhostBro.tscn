@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=37 format=2]
 
-[ext_resource path="res://antagonists/Material.material" type="Material" id=1]
-[ext_resource path="res://antagonists/black.tres" type="Material" id=2]
+[ext_resource path="res://antagonists/antagonist.gd" type="Script" id=1]
+[ext_resource path="res://antagonists/Material.material" type="Material" id=2]
+[ext_resource path="res://antagonists/black.tres" type="Material" id=3]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "Ghost"
@@ -12,7 +13,7 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 97559,
 "index_count": 546,
-"material": ExtResource( 1 ),
+"material": ExtResource( 2 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 378
@@ -261,9 +262,58 @@ tracks/0/keys = {
 "values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 360 ) ]
 }
 
-[node name="GhostBro" type="Spatial"]
+[sub_resource type="CapsuleShape" id=23]
+radius = 0.466286
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "HitVape"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "SpinVape"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "SpinVape"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "SpinVape"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=32]
+states/HitVape/node = SubResource( 24 )
+states/HitVape/position = Vector2( 357, 187 )
+states/SpinVape/node = SubResource( 27 )
+states/SpinVape/position = Vector2( 179, 91 )
+"states/SpinVape 2/node" = SubResource( 25 )
+"states/SpinVape 2/position" = Vector2( 365, 91 )
+"states/SpinVape 3/node" = SubResource( 26 )
+"states/SpinVape 3/position" = Vector2( 562, 91 )
+transitions = [ "SpinVape", "SpinVape 2", SubResource( 28 ), "SpinVape 2", "SpinVape 3", SubResource( 29 ), "SpinVape 3", "HitVape", SubResource( 30 ), "HitVape", "SpinVape", SubResource( 31 ) ]
+start_node = "SpinVape"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=33]
+
+[node name="GhostBro" type="KinematicBody"]
+collision_mask = 0
+script = ExtResource( 1 )
+id = "ghost"
 
 [node name="Graphics" type="Spatial" parent="."]
+editor/display_folded = true
 transform = Transform( 0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.2, 0 )
 
 [node name="Ghost" type="MeshInstance" parent="Graphics"]
@@ -279,28 +329,28 @@ material/0 = SubResource( 4 )
 [node name="SoulPatch" type="MeshInstance" parent="Graphics"]
 transform = Transform( 0.0147058, -0.0366436, -0.00742419, 0.0373881, 0.014413, 0.00292014, 0, -0.00797783, 0.0393762, -0.293048, 3.92728, 0.848038 )
 mesh = SubResource( 5 )
-material/0 = ExtResource( 2 )
+material/0 = ExtResource( 3 )
 
 [node name="SoulPatch2" type="MeshInstance" parent="Graphics"]
 transform = Transform( 0.0105703, 0.037989, 0.00769677, -0.0387609, 0.0103597, 0.00209894, 0, -0.00797783, 0.0393762, 0.292315, 3.92493, 0.848038 )
 mesh = SubResource( 5 )
-material/0 = ExtResource( 2 )
+material/0 = ExtResource( 3 )
 
 [node name="Eyes" type="MeshInstance" parent="Graphics"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.63496, 0.976947 )
 mesh = SubResource( 6 )
-material/0 = ExtResource( 2 )
+material/0 = ExtResource( 3 )
 
 [node name="OpenMouth" type="MeshInstance" parent="Graphics"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.54954, 0.965254 )
 visible = false
 mesh = SubResource( 7 )
-material/0 = ExtResource( 2 )
+material/0 = ExtResource( 3 )
 
 [node name="ClosedMouth" type="MeshInstance" parent="Graphics"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.54954, 0.965254 )
 mesh = SubResource( 8 )
-material/0 = ExtResource( 2 )
+material/0 = ExtResource( 3 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Graphics"]
 transform = Transform( 1.00427, 0, 0, 0, -4.70891e-08, -1.07727, 0, 1.00427, -4.38981e-08, 0, 2.56236, 0 )
@@ -320,7 +370,7 @@ draw_pass_1 = SubResource( 17 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15346, 3.00413, 0.529293 )
 
 [node name="Vape" type="MeshInstance" parent="Graphics/VapeHand"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.145459, 0.0912523, 0.245224 )
+transform = Transform( -0.802019, 0.597298, 0, -0.597298, -0.802019, 0, 0, 0, 1, 0.145459, 0.0912523, 0.245224 )
 mesh = SubResource( 18 )
 material/0 = SubResource( 19 )
 
@@ -332,3 +382,13 @@ anims/float = SubResource( 20 )
 autoplay = "SpinVape"
 anims/HitVape = SubResource( 21 )
 anims/SpinVape = SubResource( 22 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.993604, 0 )
+shape = SubResource( 23 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 32 )
+anim_player = NodePath("../HitVapeAnim")
+active = true
+parameters/playback = SubResource( 33 )

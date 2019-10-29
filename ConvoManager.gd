@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 var vampire_dialog = ["suck me off"]
 var ghost_dialog = ["you're super haunt"]
@@ -57,15 +57,55 @@ var convos = {
 	"talk_to_vampire_after_eating_garlic": {
 		"text": "Hey baby how you... ugh what is that awful smell?! \nWatch what you eat if you want guys to like you...",
 		"options": [
-			{"text" : "Bye", "send_to": "close", "set_state": "garlic_chase_vampire"}
+			{"text" : "Bye", "send_to": "close", "set_state": "set_vampire_flee"}
 		]
 	},
 }
 
+const dialog_option_obj = preload("res://DialogOption.tscn")
+var dialog_being_shown = false
 func display_dialog(id):
-	$TextDisplay.text = convos.id.text
-	for option in convos.id.options:
-		pass
+	show()
+	dialog_being_shown = true
+	var options = [{"text" : "Bye", "send_to": "close"}]
+	if id == "vampire":
+		if StateManager.ate_garlic:
+			$TextDisplay.text = "Vampire:\n" + convos.talk_to_vampire_after_eating_garlic.text
+			options = convos.talk_to_vampire_after_eating_garlic.options
+		else:
+			$TextDisplay.text = "Vampire:\n" + pick_random_dialog(vampire_dialog)
+	elif id == "ghost":
+		$TextDisplay.text = "Ghost:\n" + pick_random_dialog(ghost_dialog)
+	elif id == "skeleton":
+		$TextDisplay.text = "Skeleton:\n" + pick_random_dialog(skeleton_dialog)
+	else:
+		$TextDisplay.text = convos[id].text
+		options = convos[id].options
+	
+	for old_option in $Options.get_children():
+		old_option.queue_free()
+	for option in options:
+		var new_option = dialog_option_obj.instance()
+		new_option.text = option.text
+		$Options.add_child(new_option)
+		var params = [option.send_to, ""]
+		if "set_state" in option:
+			params[1] = option.set_state
+		new_option.connect("button_up", self, "select_option", params)
+
+func close_convo():
+	dialog_being_shown = false
+	hide()
 
 func pick_random_dialog(dialog_list):
 	return dialog_list[randi() % dialog_list.size()]
+
+func select_option(send_to, set_state):
+	if send_to == "close":
+		close_convo()
+	else:
+		display_dialog(send_to)
+	
+	if set_state != "":
+		StateManager.call(set_state)
+	
