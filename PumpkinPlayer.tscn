@@ -1,10 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://PumpkinPlayer.gd" type="Script" id=1]
 [ext_resource path="res://pumkin.glb" type="PackedScene" id=2]
+[ext_resource path="res://antagonists/EyeMesh.tres" type="ArrayMesh" id=3]
+[ext_resource path="res://antagonists/MouthMesh.tres" type="ArrayMesh" id=4]
 
 [sub_resource type="SphereShape" id=1]
 radius = 0.5
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_unshaded = true
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_unshaded = true
+albedo_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "bounce"
@@ -84,9 +94,21 @@ shape = SubResource( 1 )
 transform = Transform( 0.497387, 0, 0, 0, 0.497387, 0, 0, 0, 0.497387, 0, 0, 0 )
 
 [node name="Scene Root" parent="Graphics" instance=ExtResource( 2 )]
-transform = Transform( 0.680997, 0, 0, 0, 1.22863, 0, 0, 0, 0.680997, 0, 1.24308, 0 )
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.548735, 0 )
+
+[node name="Eyes" type="MeshInstance" parent="Graphics/Scene Root"]
+transform = Transform( 0.446527, 0, 0, 0, 0.446527, 0, 0, 0, 0.446527, 0, 0.263382, 0.973267 )
+mesh = ExtResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="Mouth" type="MeshInstance" parent="Graphics/Scene Root"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.17034, 0.930379 )
+mesh = ExtResource( 4 )
+material/0 = SubResource( 5 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
+autoplay = "still"
 anims/bounce = SubResource( 2 )
 anims/still = SubResource( 3 )
 

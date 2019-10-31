@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Fan.gd" type="Script" id=1]
+[ext_resource path="res://fanhead.glb" type="PackedScene" id=2]
+[ext_resource path="res://antagonists/fanmat.tres" type="Material" id=3]
+[ext_resource path="res://antagonists/fanblade.tres" type="Material" id=4]
+[ext_resource path="res://fanbase.glb" type="PackedScene" id=5]
+
+[sub_resource type="CapsuleShape" id=1]
+
+[sub_resource type="QuadMesh" id=2]
+
+[sub_resource type="Animation" id=3]
+resource_name = "spin"
+length = 0.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 360 ) ]
+}
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.485097, 0.475622, 2.84579 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "oscillate"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("FanHead:rotation_degrees")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 75, 0 ), Vector3( 0, -75, 0 ) ]
+}
+
+[node name="Fan" type="StaticBody"]
+transform = Transform( -0.911545, 0, 0.4112, 0, 1, 0, -0.4112, 0, -0.911545, -0.159921, -9.53674e-07, 9.10562 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="FanHead" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.616464, 0, -0.787383, 0, 1, 0, 0.787383, 0, 0.616464, 2.38419e-07, 0, 0 )
+
+[node name="fanhead" parent="FanHead" index="0"]
+material/0 = ExtResource( 3 )
+
+[node name="FanBlade" type="Spatial" parent="FanHead"]
+transform = Transform( 0.309407, 0.95093, 0, -0.95093, 0.309407, 0, 0, 0, 1, 0, 1.51949, 0.169955 )
+
+[node name="MeshInstance" type="MeshInstance" parent="FanHead/FanBlade"]
+transform = Transform( 0.0751659, -0.264018, 1.86265e-09, 0.262509, 0.0747362, 0.029311, -0.0281907, -0.0080259, 0.27294, 0.143559, 0.0930728, 9.53674e-07 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 4 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="FanHead/FanBlade"]
+transform = Transform( 0.248407, -0.116831, 0, 0.115168, 0.244869, 0.0461611, -0.0196462, -0.0417717, 0.270601, -0.188178, 0.0679362, -1.49012e-08 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 4 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="FanHead/FanBlade"]
+transform = Transform( -0.220722, -0.163209, 0, 0.158287, -0.214065, 0.0669081, -0.0397802, 0.0537981, 0.266231, -0.019531, -0.221207, 0 )
+mesh = SubResource( 2 )
+material/0 = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FanHead/FanBlade"]
+autoplay = "spin"
+anims/spin = SubResource( 3 )
+
+[node name="FanPush" type="Area" parent="FanHead"]
+
+[node name="CollisionShape" type="CollisionShape" parent="FanHead/FanPush"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.220902, 1.5807, 2.84444 )
+shape = SubResource( 4 )
+
+[node name="Scene Root" parent="." instance=ExtResource( 5 )]
+
+[node name="fanbase" parent="Scene Root" index="0"]
+material/0 = ExtResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "oscillate"
+anims/oscillate = SubResource( 5 )
+
+[editable path="FanHead"]
+
+[editable path="Scene Root"]

@@ -29,6 +29,8 @@ func _physics_process(delta):
 		if dis < 0.1:
 			path.remove(0)
 		move_and_collide(dir * move_speed * delta)
+		dir.y = 0
+		$Graphics.rotation.y = atan2(dir.x, dir.z)
 	else:
 		play_anim("still")
 	global_transform.origin.y = 0
@@ -46,9 +48,11 @@ func _process(delta):
 			var goal_pos = thing_under_mouse.global_transform.origin
 			goal_pos.y = 0
 			path = nav.get_simple_path(global_transform.origin, goal_pos)
+			path.remove(0)
 			thing_to_interact_with = thing_under_mouse
 		else:
 			path = nav.get_simple_path(global_transform.origin, get_point_under_mouse())
+			path.remove(0)
 			thing_to_interact_with = null
 			
 func get_thing_under_mouse():

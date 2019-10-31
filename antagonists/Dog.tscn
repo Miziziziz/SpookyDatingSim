@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://antagonists/antagonist.gd" type="Script" id=1]
+[ext_resource path="res://dog.glb" type="PackedScene" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.329196
+height = 0.190253
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+albedo_color = Color( 0.203922, 0.192157, 0.184314, 1 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "shiver"
+length = 0.1
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Scene Root:translation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0.0200514, 0, 0 ), Vector3( -0.0137749, 0, 0 ) ]
+}
+
+[node name="Dog" type="KinematicBody"]
+script = ExtResource( 1 )
+id = "dog"
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.203136, 0.0905455 )
+shape = SubResource( 1 )
+
+[node name="Scene Root" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00635204, 0, 0 )
+
+[node name="Cube" parent="Scene Root" index="0"]
+material/0 = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "shiver"
+anims/shiver = SubResource( 3 )
+
+[editable path="Scene Root"]

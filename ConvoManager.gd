@@ -10,7 +10,8 @@ var convos = {
 		"options": [
 			{"text" : "eat chip with guacamole", "send_to": "ate_guac", "set_state": "ate_garlic"},
 			{"text" : "eat chip with salsa", "send_to": "ate_salsa"},
-			{"text" : "eat chip with hummus", "send_to": "ate_hummus"}
+			{"text" : "eat chip with hummus", "send_to": "ate_hummus"},
+			{"text" : "go back to party", "send_to": "close"}
 		]
 	},
 	"ate_guac": {
@@ -44,6 +45,13 @@ var convos = {
 	"pet_dog" :{
 		"text": "the dog recieves your pet and seems pleased",
 		"options": [
+			{"text": "pet", "send_to": "pet_dog_again"},
+			{"text" : "go back to party", "send_to": "close"}
+		]
+	},
+	"pet_dog_again" :{
+		"text": "the dog recieves this next pet and seems pleased",
+		"options": [
 			{"text": "pet", "send_to": "pet_dog"},
 			{"text" : "go back to party", "send_to": "close"}
 		]
@@ -60,6 +68,30 @@ var convos = {
 			{"text" : "Bye", "send_to": "close", "set_state": "set_vampire_flee"}
 		]
 	},
+	"talk_to_witch_while_vampire_following": {
+		"text": "You: Hi what's your na-\n*Vampirebro rudely interrupts*\nVampirebro: Hey pumpkin wanna trade roles and suck me off instead?",
+		"options": [
+			{"text" : "Bye", "send_to": "close"}
+		]
+	},
+	"talk_to_witch_while_skeleton_following": {
+		"text": "You: Hi what's your na-\n*Skeletonbro rudely interrupts*\nSkeletonbro: Hey cutey wanna bone?",
+		"options": [
+			{"text" : "Bye", "send_to": "close"}
+		]
+	},
+	"talk_to_witch_while_ghost_following": {
+		"text": "You: Hi what's your na-\n*Ghostbro rudely interrupts*\nGhostbro: Dayummm I'd love to get inside of you!",
+		"options": [
+			{"text" : "Bye", "send_to": "close"}
+		]
+	},
+	"talk_to_witch": {
+		"text": "You: Hi what's your name?",
+		"options": [
+			{"text" : "have conversation", "send_to": "close", "set_state": "set_complete"}
+		]
+	}
 }
 
 const dialog_option_obj = preload("res://DialogOption.tscn")
@@ -68,7 +100,20 @@ func display_dialog(id):
 	show()
 	dialog_being_shown = true
 	var options = [{"text" : "Bye", "send_to": "close"}]
-	if id == "vampire":
+	if id == "witch":
+		if StateManager.vampire_following():
+			$TextDisplay.text = convos.talk_to_witch_while_vampire_following.text
+			options = convos.talk_to_witch_while_vampire_following.options
+		elif StateManager.skeleton_following():
+			$TextDisplay.text = convos.talk_to_witch_while_skeleton_following.text
+			options = convos.talk_to_witch_while_skeleton_following.options
+		elif StateManager.ghost_following():
+			$TextDisplay.text = convos.talk_to_witch_while_ghost_following.text
+			options = convos.talk_to_witch_while_ghost_following.options
+		else:
+			$TextDisplay.text = convos.talk_to_witch.text
+			options = convos.talk_to_witch.options
+	elif id == "vampire":
 		if StateManager.ate_garlic:
 			$TextDisplay.text = "Vampire:\n" + convos.talk_to_vampire_after_eating_garlic.text
 			options = convos.talk_to_vampire_after_eating_garlic.options
@@ -78,6 +123,13 @@ func display_dialog(id):
 		$TextDisplay.text = "Ghost:\n" + pick_random_dialog(ghost_dialog)
 	elif id == "skeleton":
 		$TextDisplay.text = "Skeleton:\n" + pick_random_dialog(skeleton_dialog)
+	elif id == "dog":
+		if StateManager.skeleton_following():
+			display_dialog("talk_to_dog_with_skeleton")
+			return
+		else:
+			display_dialog("talk_to_dog")
+			return
 	else:
 		$TextDisplay.text = convos[id].text
 		options = convos[id].options

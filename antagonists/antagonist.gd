@@ -13,6 +13,11 @@ var pursue_distance = 1.5
 var path = []
 onready var nav = get_parent()
 
+export var talk_when_near = false
+var is_in_fan = false
+var fan = null
+var fan_force = 2
+
 func _ready():
 	StateManager[id] = self
 	player = get_tree().get_nodes_in_group("player")[0]
@@ -27,6 +32,12 @@ func _physics_process(delta):
 	if state == State.STILL:
 		return
 	
+	if is_in_fan:
+		var dir_from_fan = (global_transform.origin - fan.global_transform.origin).normalized()
+		move_and_collide(dir_from_fan * fan_force * delta)
+		global_transform.origin.y = 0
+		return
+	
 	if state == State.PURSUE:
 		var our_pos = global_transform.origin
 		var player_pos = player.global_transform.origin
@@ -39,6 +50,9 @@ func _physics_process(delta):
 		var dis_to_player = dir_to_player.length()
 		dir_to_player = dir_to_player.normalized()
 		if dis_to_player < pursue_distance:
+			if talk_when_near:
+				talk_when_near = false
+				ConvoManager.display_dialog(id)
 			move_and_collide(-dir_to_player*(1.0 - dis_to_player / pursue_distance) * move_speed * delta)
 			global_transform.origin.y = 0
 			return
