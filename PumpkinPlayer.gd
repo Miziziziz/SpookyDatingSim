@@ -5,11 +5,17 @@ const ray_length = 1000000
 var path = PoolVector3Array()
 var move_speed = 3
 var thing_to_interact_with = null
-var interact_range = 1.2
+var interact_range = 1.6
 
 onready var anim = $Graphics/AnimationPlayer
 onready var cam = get_node("../InterpolatedCamera")
 onready var nav = get_parent().get_parent()
+
+var indicator = null
+
+func _ready():
+	indicator = get_tree().get_nodes_in_group("indicator")[0]
+	indicator.hide()
 
 func _physics_process(delta):
 	var dir = Vector3()
@@ -42,8 +48,19 @@ func play_anim(anim_name):
 func _process(delta):
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
+	
+	var thing_under_mouse = get_thing_under_mouse()
+	if thing_under_mouse and thing_under_mouse.has_method("interact"):
+		indicator.show()
+		indicator.global_transform.origin = thing_under_mouse.global_transform.origin
+		if "custom_height" in thing_under_mouse and thing_under_mouse.custom_height > 0:
+			indicator.global_transform.origin.y = thing_under_mouse.custom_height
+		else:
+			indicator.global_transform.origin.y = 2.4
+	else:
+		indicator.hide()
+	
 	if Input.is_action_just_pressed("click") and !ConvoManager.dialog_being_shown:
-		var thing_under_mouse = get_thing_under_mouse()
 		if thing_under_mouse and thing_under_mouse.has_method("interact"):
 			var goal_pos = thing_under_mouse.global_transform.origin
 			goal_pos.y = 0

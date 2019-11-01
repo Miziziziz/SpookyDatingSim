@@ -9,7 +9,7 @@ height = 0.190253
 
 [sub_resource type="SpatialMaterial" id=2]
 flags_unshaded = true
-albedo_color = Color( 0.203922, 0.192157, 0.184314, 1 )
+albedo_color = Color( 0.694118, 0.623529, 0.572549, 1 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "shiver"

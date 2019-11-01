@@ -196,7 +196,7 @@ mesh = SubResource( 1 )
 material/0 = SubResource( 2 )
 
 [node name="BoneAttachment2" type="BoneAttachment" parent="Scene Root/Armature"]
-transform = Transform( 8.64379e-05, 0.00311772, 0.999994, -0.0134683, -0.999905, 0.00311848, 0.999909, -0.0134683, -4.48525e-05, 0.336164, 1.32866, 0.0067083 )
+transform = Transform( 0.999255, 0.00340818, 0.0384165, 0.0384686, -0.0168307, -0.999118, -0.00275906, 0.999853, -0.0169493, 0.337082, 1.12349, -0.0489048 )
 bone_name = "lowerarm.l"
 
 [node name="Cup" type="MeshInstance" parent="Scene Root/Armature/BoneAttachment2"]
@@ -205,7 +205,7 @@ mesh = SubResource( 3 )
 material/0 = SubResource( 4 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Scene Root/Armature"]
-transform = Transform( 1, -7.10542e-15, -3.8147e-06, 1.15544e-07, 0.999541, 0.0302891, 3.81294e-06, -0.0302892, 0.999541, -3.54665e-24, 1.74283, -0.00223609 )
+transform = Transform( 0.999851, -0.0172615, 0.000343344, 0.0172649, 0.999648, -0.0201049, 3.81664e-06, 0.0201078, 0.999797, -0.00596266, 1.51903, -0.00223608 )
 bone_name = "head"
 
 [node name="Sunglasses" type="MeshInstance" parent="Scene Root/Armature/BoneAttachment"]
@@ -219,4 +219,5 @@ anims/ArmatureAction = SubResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.01899, -4.45416e-08 )
+visible = false
 shape = SubResource( 8 )

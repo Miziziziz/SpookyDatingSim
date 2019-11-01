@@ -1,28 +1,64 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://PumpkinPlayer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://antagonists/GhostBro.tscn" type="PackedScene" id=2]
 [ext_resource path="res://antagonists/Skelebro.tscn" type="PackedScene" id=3]
 [ext_resource path="res://antagonists/Vampirebro.tscn" type="PackedScene" id=4]
-[ext_resource path="res://antagonists/floormat.tres" type="Material" id=5]
-[ext_resource path="res://Chips.gd" type="Script" id=6]
-[ext_resource path="res://Fan.tscn" type="PackedScene" id=7]
-[ext_resource path="res://antagonists/Dog.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Witch.tscn" type="PackedScene" id=9]
-[ext_resource path="res://ExitArea.gd" type="Script" id=10]
+[ext_resource path="res://Chips.gd" type="Script" id=5]
+[ext_resource path="res://chipbag.glb" type="PackedScene" id=6]
+[ext_resource path="res://antagonists/floormat.tres" type="Material" id=7]
+[ext_resource path="res://Fan.tscn" type="PackedScene" id=8]
+[ext_resource path="res://antagonists/Dog.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Witch.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ExitArea.gd" type="Script" id=11]
+[ext_resource path="res://Drakula_Funk.wav" type="AudioStream" id=12]
+[ext_resource path="res://DiscoLights.tscn" type="PackedScene" id=13]
+[ext_resource path="res://DiscoLights2.tscn" type="PackedScene" id=14]
+[ext_resource path="res://antagonists/LittleGhostBro.tscn" type="PackedScene" id=15]
 
 [sub_resource type="NavigationMesh" id=1]
-vertices = PoolVector3Array( 7.4, 0.4, 9.5, 7.4, 0.4, 8.6, 3.5, 0.4, 8.3, -3.4, 0.4, 9.5, -9.4, 0.4, 1.4, -6.4, 0.4, 1.4, -6.1, 0.4, -2.5, -9.4, 0.4, -3.4, 3.5, 0.4, -3.4, -3.1, 0.4, -3.4, -3.4, 0.4, -2.2, -3.4, 0.4, 9.5, 3.5, 0.4, 8.3, -3.1, 0.4, -3.4, -9.4, 0.4, -3.4, -6.1, 0.4, -2.5, -3.4, 0.4, -2.2 )
-polygons = [ PoolIntArray( 3, 0, 2 ), PoolIntArray( 0, 1, 2 ), PoolIntArray( 7, 4, 6 ), PoolIntArray( 4, 5, 6 ), PoolIntArray( 12, 8, 11 ), PoolIntArray( 8, 10, 11 ), PoolIntArray( 8, 9, 10 ), PoolIntArray( 16, 13, 15 ), PoolIntArray( 13, 14, 15 ) ]
+vertices = PoolVector3Array( 1.4, 0.223546, 0.2, 1.7, 0.223546, 3.2, 3.5, 0.223546, 3.2, 3.5, 0.223546, -3.4, -3.1, 0.223546, -3.4, -9.4, 0.223546, -3.4, -6.1, 0.223546, -2.5, -3.4, 0.223546, -2.2, -3.4, 0.223546, 4.1, -1.9, 0.223546, 3.8, -1.6, 0.223546, 0.2, -3.4, 0.223546, -2.2, -3.1, 0.223546, -3.4, -3.4, 0.223546, -2.2, -1.6, 0.223546, 0.2, 1.4, 0.223546, 0.2, 3.5, 0.223546, -3.4, -9.4, 0.223546, 1.4, -6.4, 0.223546, 1.4, -6.1, 0.223546, -2.5, -9.4, 0.223546, -3.4, -1.6, 0.223546, 6.2, -1.9, 0.223546, 3.8, -3.4, 0.223546, 4.1, -3.4, 0.223546, 9.5, -1.3, 0.223546, 9.5, -0.7, 0.223546, 8, -1.6, 0.223546, 6.2, -3.4, 0.223546, 4.1, 3.5, 0.223546, 3.2, 1.7, 0.223546, 3.2, 1.4, 0.223546, 6.2, 3.5, 0.223546, 8.3, 0.5, 0.223546, 8, 0.8, 0.223546, 9.5, 3.5, 0.223546, 8.3, 1.4, 0.223546, 6.2, -0.7, 0.223546, 8, 0.5, 0.223546, 8, 1.4, 0.223546, 6.2, -1.6, 0.223546, 6.2, 7.4, 0.223546, 9.5, 7.4, 0.223546, 8.6, 3.5, 0.223546, 8.3, 0.8, 0.223546, 9.5 )
+polygons = [ PoolIntArray( 3, 0, 2 ), PoolIntArray( 0, 1, 2 ), PoolIntArray( 7, 4, 6 ), PoolIntArray( 4, 5, 6 ), PoolIntArray( 11, 8, 10 ), PoolIntArray( 8, 9, 10 ), PoolIntArray( 16, 12, 15 ), PoolIntArray( 12, 13, 15 ), PoolIntArray( 13, 14, 15 ), PoolIntArray( 20, 17, 19 ), PoolIntArray( 17, 18, 19 ), PoolIntArray( 23, 21, 22 ), PoolIntArray( 28, 24, 27 ), PoolIntArray( 24, 26, 27 ), PoolIntArray( 24, 25, 26 ), PoolIntArray( 32, 29, 31 ), PoolIntArray( 29, 30, 31 ), PoolIntArray( 36, 33, 35 ), PoolIntArray( 33, 34, 35 ), PoolIntArray( 40, 37, 39 ), PoolIntArray( 37, 38, 39 ), PoolIntArray( 44, 41, 43 ), PoolIntArray( 41, 42, 43 ) ]
+agent/max_climb = 0.1
+agent/max_slope = 1.0
+
+[sub_resource type="SpatialMaterial" id=14]
+flags_unshaded = true
+albedo_color = Color( 0.980392, 1, 0.4, 1 )
+
+[sub_resource type="SpatialMaterial" id=15]
+flags_unshaded = true
+albedo_color = Color( 0.25098, 0.545098, 0.803922, 1 )
+
+[sub_resource type="SpatialMaterial" id=16]
+flags_unshaded = true
+albedo_color = Color( 0.831373, 0.647059, 0.647059, 1 )
+
+[sub_resource type="CylinderMesh" id=17]
+
+[sub_resource type="SpatialMaterial" id=18]
+flags_unshaded = true
+albedo_color = Color( 0.898039, 0.835294, 0.329412, 1 )
+
+[sub_resource type="SpatialMaterial" id=19]
+flags_unshaded = true
+albedo_color = Color( 0.6, 0.964706, 0.435294, 1 )
+
+[sub_resource type="SpatialMaterial" id=20]
+flags_unshaded = true
+albedo_color = Color( 1, 0.368627, 0.368627, 1 )
+
+[sub_resource type="BoxShape" id=4]
+extents = Vector3( 0.439026, 0.25, 0.454807 )
+
+[sub_resource type="CubeMesh" id=12]
+
+[sub_resource type="SpatialMaterial" id=13]
+flags_unshaded = true
+albedo_color = Color( 0.482353, 0.223529, 0.223529, 1 )
 
 [sub_resource type="PlaneMesh" id=2]
 size = Vector2( 8, 8 )
-
-[sub_resource type="CubeMesh" id=3]
-size = Vector3( 0.5, 0.5, 0.5 )
-
-[sub_resource type="BoxShape" id=4]
-extents = Vector3( 0.25, 0.25, 0.25 )
 
 [sub_resource type="Environment" id=5]
 background_mode = 1
@@ -34,6 +70,40 @@ background_mode = 1
 [sub_resource type="SpatialMaterial" id=8]
 flags_unshaded = true
 albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("MeshInstance:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0.2, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MeshInstance:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector3( -180, 0, 0 ), Vector3( -180, 360, 0 ) ]
+}
+
+[sub_resource type="PrismMesh" id=10]
+size = Vector3( 2, 2, 0.5 )
+
+[sub_resource type="SpatialMaterial" id=11]
+flags_unshaded = true
 
 [node name="MainScene" type="Spatial"]
 
@@ -55,10 +125,10 @@ editor/display_folded = true
 editor/display_folded = false
 
 [node name="GhostBro" parent="Navigation" instance=ExtResource( 2 )]
-transform = Transform( 0.279598, 0, -0.960117, 0, 1, 0, 0.960117, 0, 0.279598, 3.06356, 0, 4.35259 )
+transform = Transform( 0.54078, 0, -0.841164, 0, 1, 0, 0.841164, 0, 0.54078, 2.90948, 0, 1.06829 )
 
 [node name="Skelebro" parent="Navigation" instance=ExtResource( 3 )]
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 0, 2 )
+transform = Transform( -0.702983, 0, 0.711206, 0, 1, 0, -0.711206, 0, -0.702983, -2.96901, 4.76837e-07, 9.00348 )
 
 [node name="Vampirebro" parent="Navigation" instance=ExtResource( 4 )]
 transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 0, 6 )
@@ -67,52 +137,113 @@ talk_when_near = true
 [node name="NavigationMeshInstance" type="NavigationMeshInstance" parent="Navigation"]
 navmesh = SubResource( 1 )
 
+[node name="Chips" type="StaticBody" parent="Navigation/NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.769696, 1, 2.8268 )
+script = ExtResource( 5 )
+
+[node name="Scene Root" parent="Navigation/NavigationMeshInstance/Chips" instance=ExtResource( 6 )]
+editor/display_folded = true
+transform = Transform( 0.301988, 0.55932, 0.771987, 0, 0.809795, -0.586713, -0.953312, 0.17718, 0.244548, 1.19209e-07, -0.215533, 0 )
+
+[node name="Cube" parent="Navigation/NavigationMeshInstance/Chips/Scene Root" index="0"]
+material/0 = SubResource( 14 )
+
+[node name="Scene Root2" parent="Navigation/NavigationMeshInstance/Chips" instance=ExtResource( 6 )]
+transform = Transform( 0.206714, -0.207479, 0.956149, 0.220149, 0.96206, 0.161166, -0.953312, 0.17718, 0.244548, 0.492153, -0.215533, 0.287883 )
+
+[node name="Cube" parent="Navigation/NavigationMeshInstance/Chips/Scene Root2" index="0"]
+transform = Transform( 1, 2.98023e-08, 0, -1.49012e-08, 1, -3.72529e-09, 0, 2.23517e-08, 1, 0.0138264, 0.33202, 0.0639534 )
+material/0 = SubResource( 15 )
+
+[node name="Scene Root3" parent="Navigation/NavigationMeshInstance/Chips" instance=ExtResource( 6 )]
+transform = Transform( 0.992261, 0.0780563, -0.0965642, -0.0579615, 0.978945, 0.195723, 0.109808, -0.188611, 0.975893, 0.32939, -0.215533, 0.766906 )
+
+[node name="Cube" parent="Navigation/NavigationMeshInstance/Chips/Scene Root3" index="0"]
+transform = Transform( 1, 1.11759e-08, 0, 3.72529e-09, 1, 0, 2.98023e-08, -2.98023e-08, 1, 5.96046e-08, 0.345898, -9.53674e-07 )
+material/0 = SubResource( 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Chips"]
+transform = Transform( 0.113121, 0, 0, 0, 0.113121, 0, 0, 0, 0.113121, -0.190661, -0.147329, 0.469428 )
+mesh = SubResource( 17 )
+material/0 = SubResource( 18 )
+
+[node name="MeshInstance2" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Chips"]
+transform = Transform( 0.113121, 0, 0, 0, 0.113121, 0, 0, 0, 0.113121, -0.0787035, -0.147329, 0.753728 )
+mesh = SubResource( 17 )
+material/0 = SubResource( 19 )
+
+[node name="MeshInstance3" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Chips"]
+transform = Transform( 0.113121, 0, 0, 0, 0.113121, 0, 0, 0, 0.113121, 0.0324472, -0.147329, 0.474142 )
+mesh = SubResource( 17 )
+material/0 = SubResource( 20 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/Chips"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.214085, 0, 0.334034 )
+shape = SubResource( 4 )
+
+[node name="Table" type="Spatial" parent="Navigation/NavigationMeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.40207 )
+
+[node name="Top" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Table"]
+transform = Transform( 1.04645, 0, 0, 0, 0.143907, 0, 0, 0, 2.25411, 0, 0.621608, -1.1168 )
+mesh = SubResource( 12 )
+material/0 = SubResource( 13 )
+
+[node name="Leg" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Table"]
+transform = Transform( 0.136423, 0, 0, 0, 0.380613, 0, 0, 0, 0.135051, 0.838747, 0.204159, 0.915933 )
+mesh = SubResource( 12 )
+material/0 = SubResource( 13 )
+
+[node name="Leg4" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Table"]
+transform = Transform( 0.136423, 0, 0, 0, 0.380613, 0, 0, 0, 0.135051, 0.838747, 0.204159, -3.14566 )
+mesh = SubResource( 12 )
+material/0 = SubResource( 13 )
+
+[node name="Leg2" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Table"]
+transform = Transform( 0.136423, 0, 0, 0, 0.380613, 0, 0, 0, 0.135051, -0.864873, 0.204159, 0.915933 )
+mesh = SubResource( 12 )
+material/0 = SubResource( 13 )
+
+[node name="Leg3" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Table"]
+transform = Transform( 0.136423, 0, 0, 0, 0.380613, 0, 0, 0, 0.135051, -0.864873, 0.204159, -3.14566 )
+mesh = SubResource( 12 )
+material/0 = SubResource( 13 )
+
 [node name="Floor" type="Spatial" parent="Navigation/NavigationMeshInstance"]
 editor/display_folded = true
 
 [node name="Floor" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Floor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1.75, 0, 0, 3 )
 mesh = SubResource( 2 )
-material/0 = ExtResource( 5 )
+material/0 = ExtResource( 7 )
 
 [node name="Floor2" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Floor"]
 transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.75, -8, 0, -1 )
 mesh = SubResource( 2 )
-material/0 = ExtResource( 5 )
+material/0 = ExtResource( 7 )
 
 [node name="Floor3" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Floor"]
 transform = Transform( 0.25, 0, 0, 0, 1, 0, 0, 0, 0.2475, -5, 0, -3 )
 mesh = SubResource( 2 )
-material/0 = ExtResource( 5 )
+material/0 = ExtResource( 7 )
 
 [node name="Floor4" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Floor"]
 transform = Transform( 0.5, 0, 0, 0, 1, 0, 0, 0, 0.2475, 6, 0, 9 )
 mesh = SubResource( 2 )
-material/0 = ExtResource( 5 )
+material/0 = ExtResource( 7 )
 
-[node name="Chips" type="StaticBody" parent="Navigation/NavigationMeshInstance"]
-editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 3 )
-script = ExtResource( 6 )
+[node name="Fan" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 8 )]
 
-[node name="MeshInstance" type="MeshInstance" parent="Navigation/NavigationMeshInstance/Chips"]
-mesh = SubResource( 3 )
-material/0 = null
-
-[node name="CollisionShape" type="CollisionShape" parent="Navigation/NavigationMeshInstance/Chips"]
-shape = SubResource( 4 )
-
-[node name="Fan" parent="Navigation/NavigationMeshInstance" instance=ExtResource( 7 )]
-
-[node name="Dog" parent="Navigation" instance=ExtResource( 8 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.08439, 0, -0.467798 )
+[node name="Dog" parent="Navigation" instance=ExtResource( 9 )]
+transform = Transform( -0.522877, 0, 0.852408, 0, 1, 0, -0.852408, 0, -0.522877, -9.08439, 0, -0.467798 )
+custom_height = 0.6
 
 [node name="FleePoint" type="Spatial" parent="." groups=[
 "flee_point",
 ]]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 9 )
 
-[node name="Witch" parent="." instance=ExtResource( 9 )]
+[node name="Witch" parent="." instance=ExtResource( 10 )]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.37746 )
 
@@ -123,7 +254,7 @@ environment = SubResource( 5 )
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.41177, 0.335956, 9 )
 collision_layer = 0
-script = ExtResource( 10 )
+script = ExtResource( 11 )
 
 [node name="CollisionShape" type="CollisionShape" parent="ExitArea"]
 shape = SubResource( 6 )
@@ -133,7 +264,46 @@ transform = Transform( 1.80169, 0, 0, 0, 3.40501, 0, 0, 0, 1.69395, 0.757543, 0,
 mesh = SubResource( 7 )
 material/0 = SubResource( 8 )
 
+[node name="Indicator" type="Spatial" parent="." groups=[
+"indicator",
+]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Indicator"]
+autoplay = "idle"
+anims/idle = SubResource( 9 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Indicator"]
+transform = Transform( -0.118685, -1.55299e-08, 0.177641, 0, -0.213641, -1.86771e-08, 0.177641, -1.03758e-08, 0.118685, 0, 0.137497, 0 )
+mesh = SubResource( 10 )
+material/0 = SubResource( 11 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+autoplay = true
+
+[node name="DiscoLights" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.255603, 0, 1.18724, 0, 1.21444, 0, -1.18724, 0, -0.255603, 0, 0, 0 )
+
+[node name="DiscoLights2" parent="." instance=ExtResource( 13 )]
+transform = Transform( -0.210469, 0, 0.9776, 0, 1, 0, -0.9776, 0, -0.210469, -1.6211, 0, 7.7597 )
+
+[node name="DiscoLights3" parent="." instance=ExtResource( 14 )]
+transform = Transform( -0.146851, 0, 0.682103, 0, 0.697732, 0, -0.682103, 0, -0.146851, -8.16012, -9.53674e-07, -1.64898 )
+
+[node name="DiscoLights4" parent="." instance=ExtResource( 14 )]
+transform = Transform( -0.204953, 0, 0.951979, 0, 0.973792, 0, -0.951979, 0, -0.204953, 2.04867, -1.90735e-06, 5.65775 )
+
+[node name="GhostLittleBro" parent="." instance=ExtResource( 15 )]
+transform = Transform( 0.508645, 0, 0.860977, 0, 1, 0, -0.860977, 0, 0.508645, -8.67053, 0, -1.84409 )
+
 [editable path="Navigation/Player/PumpkinPlayer"]
+
+[editable path="Navigation/NavigationMeshInstance/Chips/Scene Root"]
+
+[editable path="Navigation/NavigationMeshInstance/Chips/Scene Root2"]
+
+[editable path="Navigation/NavigationMeshInstance/Chips/Scene Root3"]
 
 [editable path="Witch"]
 

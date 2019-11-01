@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ConvoManager.gd" type="Script" id=1]
+[ext_resource path="res://ui_textures/new_theme.tres" type="Theme" id=2]
+[ext_resource path="res://ui_textures/base.png" type="Texture" id=3]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 32, 32 )
+margin_left = 10.9433
+margin_right = 11.3206
+margin_top = 9.81119
+margin_bottom = 9.05649
+modulate_color = Color( 0.611765, 0.2, 0.2, 1 )
 
 [node name="ConvoManager" type="Control"]
 visible = false
@@ -19,6 +30,7 @@ margin_left = -137.0
 margin_top = -127.0
 margin_right = 105.0
 margin_bottom = -27.0
+theme = ExtResource( 2 )
 text = "Hey hey hey hey hey Hey hey hey hey hey Hey hey hey hey hey"
 autowrap = true
 
@@ -26,42 +38,17 @@ autowrap = true
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-
-[node name="Options" type="GridContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -7.2175
-margin_right = 20.0
-margin_bottom = 58.7825
-
-[node name="Panel" type="Panel" parent="Options"]
+margin_left = -10.0
+margin_top = -10.0
 margin_right = 10.0
 margin_bottom = 10.0
-rect_min_size = Vector2( 10, 10 )
+custom_styles/panelf = SubResource( 1 )
+custom_styles/panel = SubResource( 1 )
 
-[node name="Panel2" type="Panel" parent="Options"]
-margin_top = 14.0
-margin_right = 10.0
-margin_bottom = 24.0
-rect_min_size = Vector2( 10, 10 )
-
-[node name="Panel3" type="Panel" parent="Options"]
-margin_top = 28.0
-margin_right = 10.0
-margin_bottom = 38.0
-rect_min_size = Vector2( 10, 10 )
-
-[node name="Panel4" type="Panel" parent="Options"]
-margin_top = 42.0
-margin_right = 10.0
-margin_bottom = 52.0
-rect_min_size = Vector2( 10, 10 )
-
-[node name="Panel5" type="Panel" parent="Options"]
-margin_top = 56.0
-margin_right = 10.0
-margin_bottom = 66.0
-rect_min_size = Vector2( 10, 10 )
+[node name="Options" type="GridContainer" parent="TextDisplay/Panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 6.79236
+margin_top = 4.18762
+margin_right = 46.7924
+margin_bottom = 70.1876

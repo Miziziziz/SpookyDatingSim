@@ -1,8 +1,10 @@
 extends Control
 
-var vampire_dialog = ["suck me off"]
-var ghost_dialog = ["you're super haunt"]
-var skeleton_dialog = ["wanna bone"]
+var vampire_dialog = ["Eyy Baby your blood ain't the only thing gettin sucked tonight", "Damn would love to sink my teeth in that fat asssss; to drain your blood of course", "Are you a vampire too? Cause all the blood in my body seems to be rushing to one spot"]
+var ghost_dialog = ["Damn babe you're lookin smokin haunt", "Unholy smokes would need an exorcist to get me outta those thighs", "Been a while since I got me some corporeal"]
+var skeleton_dialog = ["Sup babe how bout we go to bone town", "Oof grind on me until I'm bonemeal baby", "My longest bone right now isn't my thigh bone or my femur", "Just a tip, you'd be more attractive if you lost some weight; still would though"]
+
+onready var options_node = $TextDisplay/Panel/Options
 
 var convos = {
 	"eat_chips": {
@@ -91,6 +93,18 @@ var convos = {
 		"options": [
 			{"text" : "have conversation", "send_to": "close", "set_state": "set_complete"}
 		]
+	},
+	"ghost_little_bro":{
+		"text": "Ghost Little Bro: I'm just here for the boos",
+		"options": [
+			{"text" : "Bye", "send_to": "close",}
+		]
+	},
+	"ghost_little_bro_pet":{
+		"text": "Ghost Little Bro: Can you pet this dog for me? I tried but I just end up haunting it",
+		"options": [
+			{"text" : "Bye", "send_to": "close",}
+		]
 	}
 }
 
@@ -98,6 +112,7 @@ const dialog_option_obj = preload("res://DialogOption.tscn")
 var dialog_being_shown = false
 func display_dialog(id):
 	show()
+	$TextDisplay.rect_size = Vector2(260, 0)
 	dialog_being_shown = true
 	var options = [{"text" : "Bye", "send_to": "close"}]
 	if id == "witch":
@@ -134,12 +149,12 @@ func display_dialog(id):
 		$TextDisplay.text = convos[id].text
 		options = convos[id].options
 	
-	for old_option in $Options.get_children():
+	for old_option in options_node.get_children():
 		old_option.queue_free()
 	for option in options:
 		var new_option = dialog_option_obj.instance()
 		new_option.text = option.text
-		$Options.add_child(new_option)
+		options_node.add_child(new_option)
 		var params = [option.send_to, ""]
 		if "set_state" in option:
 			params[1] = option.set_state
@@ -149,8 +164,10 @@ func close_convo():
 	dialog_being_shown = false
 	hide()
 
+var d_ind = 0
 func pick_random_dialog(dialog_list):
-	return dialog_list[randi() % dialog_list.size()]
+	d_ind += 1
+	return dialog_list[d_ind % dialog_list.size()]
 
 func select_option(send_to, set_state):
 	if send_to == "close":

@@ -52,4 +52,4 @@ func ghost_following():
 	return person_following == Bro.GHOST
 
 func set_complete():
-	print("game won")
+	get_tree().change_scene("res://ui_textures/Outro.tscn")

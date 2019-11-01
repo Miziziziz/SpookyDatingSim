@@ -1,5 +1,7 @@
 extends KinematicBody
 
+export var custom_height = -0.1
+
 export var id = ""
 var player = null
 var flee_point = Vector3() #TODO

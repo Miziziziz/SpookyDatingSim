@@ -55,7 +55,7 @@ id = "vampire"
 [node name="Scene Root" parent="." instance=ExtResource( 2 )]
 
 [node name="Cube" parent="Scene Root" index="0"]
-transform = Transform( 1, 0, 0, 0, 0.99996, 0.00893885, 0, -0.00893885, 0.99996, 0, 0, 0.00353815 )
+transform = Transform( 1, 0, 0, 0, 0.999246, 0.0388306, 0, -0.0388306, 0.999246, 0, 0, 0.0734293 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "flicker"
