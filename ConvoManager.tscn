@@ -1,17 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene format=3]
 
-[ext_resource path="res://ConvoManager.gd" type="Script" id=1]
-[ext_resource path="res://ui_textures/new_theme.tres" type="Theme" id=2]
-[ext_resource path="res://ui_textures/base.png" type="Texture" id=3]
+[ext_resource type="Script" path="res://ConvoManager.gd" id="1"]
+[ext_resource type="Theme" path="res://ui_textures/new_theme.tres" id="2"]
+[ext_resource type="Texture2D" path="res://ui_textures/base.png" id="3"]
 
-[sub_resource type="StyleBoxTexture" id=1]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 32, 32 )
-margin_left = 10.9433
-margin_right = 11.3206
-margin_top = 9.81119
-margin_bottom = 9.05649
-modulate_color = Color( 0.611765, 0.2, 0.2, 1 )
+[sub_resource type="StyleBoxTexture" id="1"]
+texture = ExtResource("3")
+texture_margin_left = 10.9433
+texture_margin_top = 9.81119
+texture_margin_right = 11.3206
+texture_margin_bottom = 9.05649
+region_rect = Rect2(0, 0, 32, 32)
+modulate_color = Color(0.611765, 0.2, 0.2, 1)
 
 [node name="ConvoManager" type="Control"]
 visible = false
@@ -19,36 +19,36 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="TextDisplay" type="Label" parent="."]
+autowrap_mode = 3
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -137.0
-margin_top = -127.0
-margin_right = 105.0
-margin_bottom = -27.0
-theme = ExtResource( 2 )
+offset_left = -137.0
+offset_top = -127.0
+offset_right = 105.0
+offset_bottom = -27.0
+theme = ExtResource("2")
 text = "Hey hey hey hey hey Hey hey hey hey hey Hey hey hey hey hey"
-autowrap = true
 
 [node name="Panel" type="Panel" parent="TextDisplay"]
 show_behind_parent = true
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -10.0
-margin_top = -10.0
-margin_right = 10.0
-margin_bottom = 10.0
-custom_styles/panelf = SubResource( 1 )
-custom_styles/panel = SubResource( 1 )
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 10.0
+offset_bottom = 10.0
+theme_override_styles/panelf = SubResource("1")
+theme_override_styles/panel = SubResource("1")
 
 [node name="Options" type="GridContainer" parent="TextDisplay/Panel"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 6.79236
-margin_top = 4.18762
-margin_right = 46.7924
-margin_bottom = 70.1876
+offset_left = 6.79236
+offset_top = 4.18762
+offset_right = 46.7924
+offset_bottom = 70.1876

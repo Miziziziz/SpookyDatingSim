@@ -1,8 +1,8 @@
-extends KinematicBody
+extends CharacterBody3D
 
-export var custom_height = -0.1
+@export var custom_height = -0.1
 
-export var id = ""
+@export var id = ""
 var player = null
 var flee_point = Vector3() #TODO
 
@@ -13,9 +13,8 @@ var move_speed = 3
 var pursue_distance = 1.5
 
 var path = []
-onready var nav = get_parent()
 
-export var talk_when_near = false
+@export var talk_when_near = false
 var is_in_fan = false
 var fan = null
 var fan_force = 2
@@ -46,8 +45,9 @@ func _physics_process(delta):
 		
 		rotation.y = atan2(player_pos.x - our_pos.x, player_pos.z - our_pos.z)
 		
-		path = nav.get_simple_path(our_pos, player_pos)
-		path.remove(0)
+		path = get_nav_path(our_pos, player_pos)
+		if path.size() > 0:
+			path.remove_at(0)
 		var dir_to_player = player_pos - our_pos
 		var dis_to_player = dir_to_player.length()
 		dir_to_player = dir_to_player.normalized()
@@ -67,7 +67,7 @@ func _physics_process(delta):
 		var dis = dir.length()
 		dir = dir.normalized()
 		if dis < 0.1:
-			path.remove(0)
+			path.remove_at(0)
 		move_and_collide(dir * move_speed * delta)
 		if state == State.FLEE:
 			var player_pos = player.global_transform.origin
@@ -83,4 +83,8 @@ func set_pursue_state():
 
 func set_flee_state():
 	state = State.FLEE
-	path = nav.get_simple_path(global_transform.origin, flee_point)
+	path = get_nav_path(global_transform.origin, flee_point)
+
+
+func get_nav_path(from: Vector3, to: Vector3) -> PackedVector3Array:
+	return NavigationServer3D.map_get_path(get_world_3d().navigation_map, from, to, true)

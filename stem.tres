@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[resource]
+resource_name = "stem"
+shading_mode = 0
+cull_mode = 2
+albedo_color = Color(0.267552, 0.533327, 0.20936, 1)

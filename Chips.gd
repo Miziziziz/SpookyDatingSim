@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 var custom_height = 1.5
 

@@ -1,4 +1,4 @@
-extends KinematicBody
+extends CharacterBody3D
 
 func interact():
 	if StateManager.vampire_following() or StateManager.skeleton_following():

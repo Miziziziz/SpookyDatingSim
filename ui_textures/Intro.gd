@@ -5,4 +5,4 @@ func _process(delta):
 		get_tree().quit()
 	
 	if Input.is_action_just_pressed("continue"):
-		get_tree().change_scene("res://MainScene.tscn")
+		get_tree().change_scene_to_file("res://MainScene.tscn")

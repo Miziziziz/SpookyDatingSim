@@ -1,6 +1,6 @@
 extends Node
 
-var ate_garlic = false
+var player_ate_garlic = false
 enum Bro {VAMPIRE, GHOST, SKELETON}
 var person_following = Bro.VAMPIRE
 
@@ -32,7 +32,7 @@ func garlic_chase_vampire():
 	set_skeleton_following()
 
 func ate_garlic():
-	ate_garlic = true
+	player_ate_garlic = true
 
 func set_vampire_flee():
 	vampire.set_flee_state()
@@ -52,4 +52,4 @@ func ghost_following():
 	return person_following == Bro.GHOST
 
 func set_complete():
-	get_tree().change_scene("res://ui_textures/Outro.tscn")
+	get_tree().change_scene_to_file("res://ui_textures/Outro.tscn")

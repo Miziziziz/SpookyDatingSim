@@ -1,15 +1,14 @@
-extends KinematicBody
+extends CharacterBody3D
 
 const ray_length = 1000000
 
-var path = PoolVector3Array()
+var path = PackedVector3Array()
 var move_speed = 3
 var thing_to_interact_with = null
 var interact_range = 1.6
 
-onready var anim = $Graphics/AnimationPlayer
-onready var cam = get_node("../InterpolatedCamera")
-onready var nav = get_parent().get_parent()
+@onready var anim = $Graphics/AnimationPlayer
+@onready var cam = get_node("../Camera3D")
 
 var indicator = null
 
@@ -22,7 +21,7 @@ func _physics_process(delta):
 	if thing_to_interact_with:
 		var dis = thing_to_interact_with.global_transform.origin.distance_to(global_transform.origin)
 		if dis < interact_range:
-			path = PoolVector3Array()
+			path = PackedVector3Array()
 			thing_to_interact_with.interact()
 			thing_to_interact_with = null
 	if len(path) > 0:
@@ -33,7 +32,7 @@ func _physics_process(delta):
 		var dis = dir.length()
 		dir = dir.normalized()
 		if dis < 0.1:
-			path.remove(0)
+			path.remove_at(0)
 		move_and_collide(dir * move_speed * delta)
 		dir.y = 0
 		$Graphics.rotation.y = atan2(dir.x, dir.z)
@@ -64,20 +63,22 @@ func _process(delta):
 		if thing_under_mouse and thing_under_mouse.has_method("interact"):
 			var goal_pos = thing_under_mouse.global_transform.origin
 			goal_pos.y = 0
-			path = nav.get_simple_path(global_transform.origin, goal_pos)
-			path.remove(0)
+			path = get_nav_path(global_transform.origin, goal_pos)
+			if path.size() > 0:
+				path.remove_at(0)
 			thing_to_interact_with = thing_under_mouse
 		else:
-			path = nav.get_simple_path(global_transform.origin, get_point_under_mouse())
-			path.remove(0)
+			path = get_nav_path(global_transform.origin, get_point_under_mouse())
+			if path.size() > 0:
+				path.remove_at(0)
 			thing_to_interact_with = null
 			
 func get_thing_under_mouse():
 	var m_pos = get_viewport().get_mouse_position()
 	var from = cam.project_ray_origin(m_pos)
 	var to = from + cam.project_ray_normal(m_pos) * ray_length
-	var space_state = get_world().direct_space_state
-	var result = space_state.intersect_ray(from, to)
+	var space_state = get_world_3d().direct_space_state
+	var result = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(from, to))
 	if result:
 		return result.collider
 	return null
@@ -96,3 +97,6 @@ func get_point_under_mouse():
 
 func move_to_point():
 	pass
+
+func get_nav_path(from: Vector3, to: Vector3) -> PackedVector3Array:
+	return NavigationServer3D.map_get_path(get_world_3d().navigation_map, from, to, true)

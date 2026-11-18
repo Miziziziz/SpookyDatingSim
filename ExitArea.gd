@@ -1,4 +1,4 @@
-extends Area
+extends Area3D
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -6,7 +6,7 @@ extends Area
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	connect("body_entered", self, "body_entered")
+	connect("body_entered", Callable(self, "body_entered"))
 
 func body_entered(body):
 	if "id" in body and body.id == "ghost" and body.is_in_fan:

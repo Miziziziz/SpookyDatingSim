@@ -1,51 +1,46 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene format=3]
 
-[ext_resource path="res://ui_textures/green fuz.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://ui_textures/Intro.gd" type="Script" id=2]
-[ext_resource path="res://churchbell.wav" type="AudioStream" id=3]
-
-[sub_resource type="DynamicFont" id=1]
-size = 32
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=2]
-font_data = ExtResource( 1 )
+[ext_resource type="FontFile" path="res://ui_textures/green fuz.ttf" id="1"]
+[ext_resource type="Script" path="res://ui_textures/Intro.gd" id="2"]
+[ext_resource type="AudioStream" path="res://churchbell.wav" id="3"]
 
 [node name="Control" type="Label"]
+autowrap_mode = 3
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 300.0
-custom_fonts/font = SubResource( 1 )
+offset_left = -512.0
+offset_top = -300.0
+offset_right = 512.0
+offset_bottom = 300.0
+theme_override_fonts/font = ExtResource("1")
+theme_override_font_sizes/font_size = 32
 text = "The clock strikes midnight and you transform into a beautiful princess.
 You go back to the witch's place for the night and have a great time.
 Then you never talk to each other again, which is kind of awkward since you have classes together"
-align = 1
-valign = 1
-autowrap = true
-script = ExtResource( 2 )
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2")
 
 [node name="Label" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -165.5
-margin_top = 125.788
-margin_right = 178.5
-margin_bottom = 218.788
-custom_fonts/font = SubResource( 2 )
+offset_left = -165.5
+offset_top = 125.788
+offset_right = 178.5
+offset_bottom = 218.788
+theme_override_fonts/font = ExtResource("1")
+theme_override_font_sizes/font_size = 16
 text = "Thanks for playing, created by miziziziz
 
 
 press 'Exit ' to close"
-align = 1
-valign = 1
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource("3")
 autoplay = true

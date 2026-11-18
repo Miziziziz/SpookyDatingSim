@@ -6,9 +6,5 @@ extends AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	
-	seek(rand_range(0, current_animation_length))
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+	play("main")
+	seek(randf_range(0, get_animation("main").length), true)

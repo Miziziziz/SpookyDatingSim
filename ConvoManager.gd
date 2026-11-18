@@ -4,7 +4,7 @@ var vampire_dialog = ["Eyy Baby your blood ain't the only thing gettin sucked to
 var ghost_dialog = ["Damn babe you're lookin smokin haunt", "Unholy smokes would need an exorcist to get me outta those thighs", "Been a while since I got me some corporeal"]
 var skeleton_dialog = ["Sup babe how bout we go to bone town", "Oof grind on me until I'm bonemeal baby", "My longest bone right now isn't my thigh bone or my femur", "Just a tip, you'd be more attractive if you lost some weight; still would though"]
 
-onready var options_node = $TextDisplay/Panel/Options
+@onready var options_node = $TextDisplay/Panel/Options
 
 var convos = {
 	"eat_chips": {
@@ -112,7 +112,7 @@ const dialog_option_obj = preload("res://DialogOption.tscn")
 var dialog_being_shown = false
 func display_dialog(id):
 	show()
-	$TextDisplay.rect_size = Vector2(260, 0)
+	$TextDisplay.size = Vector2(260, 0)
 	dialog_being_shown = true
 	var options = [{"text" : "Bye", "send_to": "close"}]
 	if id == "witch":
@@ -129,7 +129,7 @@ func display_dialog(id):
 			$TextDisplay.text = convos.talk_to_witch.text
 			options = convos.talk_to_witch.options
 	elif id == "vampire":
-		if StateManager.ate_garlic:
+		if StateManager.player_ate_garlic:
 			$TextDisplay.text = "Vampire:\n" + convos.talk_to_vampire_after_eating_garlic.text
 			options = convos.talk_to_vampire_after_eating_garlic.options
 		else:
@@ -152,13 +152,11 @@ func display_dialog(id):
 	for old_option in options_node.get_children():
 		old_option.queue_free()
 	for option in options:
-		var new_option = dialog_option_obj.instance()
+		var new_option = dialog_option_obj.instantiate()
 		new_option.text = option.text
 		options_node.add_child(new_option)
-		var params = [option.send_to, ""]
-		if "set_state" in option:
-			params[1] = option.set_state
-		new_option.connect("button_up", self, "select_option", params)
+		var set_state = option.get("set_state", "")
+		new_option.button_up.connect(select_option.bind(option.send_to, set_state))
 
 func close_convo():
 	dialog_being_shown = false
